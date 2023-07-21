@@ -12,14 +12,16 @@ GitHunt is a Python-based GitHub Repository Search tool that allows users to fin
 ## Features
 
 - Search GitHub repositories using custom search terms.
-- Optionally filter results by programming language.
-- Display repository name, description, URL, and language.
-- User-friendly command-line interface.
+- Optionally filter results by programming language (e.g Python, JavaScript, Etc)
+- Displays repository names, descriptions, relevant URLs, and programming languages used.
+- User-friendly command-line interface. 🙂
 
 ## Requirements
 
-- Python 3.x
-- `requests` module
+- Python 3.x (Python 2.x version coming soon)
+- `requests`
+- `python-dotenv`
+- `colorama` modules
 
 ## Usage
 
@@ -29,7 +31,7 @@ GitHunt is a Python-based GitHub Repository Search tool that allows users to fin
 
 3. The first time you run the program, it will ask you to enter your GitHub access token. For subsequent runs, the program will use the stored token from the environment variable.
 
-4. Run the program:
+4. Run the program.
 
 5. Follow the on-screen prompts to enter your search term and, optionally, a programming language.
 
