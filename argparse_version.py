@@ -63,8 +63,8 @@ def display_repositories(repositories):
         print(f"{Fore.GREEN}Found 1 repository:")
         print("")
     else:
-        print("")
         print(f"{Fore.GREEN}Found {len(repositories)} repositories:")
+        print("")
 
     for repo in repositories:
         print(f"{Fore.YELLOW}Repository: {repo['name']}")
