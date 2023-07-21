@@ -2,11 +2,14 @@ import os
 import sys
 from dotenv import load_dotenv
 import requests
+from colorama import init, Fore, Style
 
 if sys.platform == "win32":
     os.system('cls')
 else:
     os.system('clear')
+
+init(autoreset=True)  # Initialize colorama to automatically reset color
 
 load_dotenv()  # Load environment variables from .env file
 
@@ -42,31 +45,34 @@ def fetch_github_repositories(search_term, language=None, max_results=100):
             if len(repositories) >= max_results:
                 break
         else:
-            print(f"Failed to fetch repositories. Status code: {response.status_code}")
+            print(f"{Fore.RED}Failed to fetch repositories. Status code: {response.status_code}")
             break
 
-    # Filter repositories to match the specified language
-    if language:
-        repositories = [repo for repo in repositories if repo['language'] and repo['language'].lower() == language]
+    # Filter repositories to match the specified language and optional keywords in the description
+    if language or search_term:
+        search_term = search_term.lower()
+        repositories = [repo for repo in repositories if 
+                        (not language or (repo['language'] and repo['language'].lower() == language)) and
+                        (search_term in repo['name'].lower() or search_term in repo['description'].lower())]
 
     return repositories[:max_results]
 
 def display_repositories(repositories):
     for repo in repositories:
-        print(f"Repository: {repo['name']}")
-        print(f"Description: {repo['description']}")
-        print(f"URL: {repo['html_url']}")
-        print(f"Language: {repo['language']}")
-        print("=" * 50)
+        print(f"{Fore.GREEN}Repository: {repo['name']}")
+        print(f"{Fore.YELLOW}Description: {repo['description']}")
+        print(f"{Fore.CYAN}URL: {repo['html_url']}")
+        print(f"{Fore.MAGENTA}Language: {repo['language']}")
+        print(f"{Fore.RESET}{Style.BRIGHT}{'=' * 50}")
 
 if __name__ == "__main__":
-    search_term = input("Enter the search term for GitHub repositories: ")
-    language = input("Enter the programming language (optional): ")
+    search_term = input(f"{Fore.BLUE}Enter the search term for GitHub repositories: ")
+    language = input(f"{Fore.BLUE}Enter the programming language (optional): ")
 
     repositories = fetch_github_repositories(search_term, language)
 
     if repositories:
-        print(f"Found {len(repositories)} repositories:")
+        print(f"{Fore.GREEN}Found {len(repositories)} repositories:")
         display_repositories(repositories)
     else:
-        print("No repositories found.")
+        print(f"{Fore.YELLOW}No repositories found.")
