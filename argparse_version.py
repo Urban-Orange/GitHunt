@@ -59,11 +59,17 @@ def fetch_github_repositories(search_term, language=None, max_results=100):
     return repositories[:max_results]
 
 def display_repositories(repositories):
+    if len(repositories) == 1:
+        print(f"{Fore.GREEN}Found 1 repository:")
+        print("")
+    else:
+        print("")
+        print(f"{Fore.GREEN}Found {len(repositories)} repositories:")
+
     for repo in repositories:
-        print(f"{Fore.GREEN}Repository: {repo['name']}")
-        print(f"{Fore.YELLOW}Description: {repo['description']}")
-        print(f"{Fore.CYAN}URL: {repo['html_url']}")
-        print(f"{Fore.MAGENTA}Language: {repo['language']}")
+        print(f"{Fore.YELLOW}Repository: {repo['name']}")
+        print(f"{Fore.CYAN}Description: {repo['description']}")
+        print(f"{Fore.MAGENTA}URL: {repo['html_url']}")
         print(f"{Fore.RESET}{Style.BRIGHT}{'=' * 50}")
 
 brief_descr = f"{Fore.BLUE}GitHunt: A GitHub Repository Search Tool{Fore.RESET}"
@@ -72,7 +78,7 @@ usage_example = "python argparse_version.py Calculator -l javascript"
 class CustomHelpFormatter(argparse.HelpFormatter):
     def add_usage(self, usage, actions, groups, prefix=None):
         if prefix is None:
-            prefix = "Example usage for searching for calculator repositories in javascript: "
+            prefix = "How to use: "
         return super().add_usage(usage, actions, groups, prefix)
 
 def main():
@@ -90,16 +96,13 @@ def main():
 
     if not search_term:
         parser.print_help()
-        print()
+        print("")
         print(f"{Fore.RED}Error: Missing required argument 'search_term'")
         sys.exit(1)
 
     repositories = fetch_github_repositories(search_term, language)
 
     if repositories:
-        print("")
-        print(f"{Fore.GREEN}Found {len(repositories)} repositories:")
-        print("")
         display_repositories(repositories)
     else:
         print(f"{Fore.YELLOW}No repositories found.")
