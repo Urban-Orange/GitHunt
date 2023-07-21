@@ -24,7 +24,7 @@ def fetch_github_repositories(search_term, language=None, max_results=100):
     headers = {"Authorization": f"Bearer {access_token}"}
     
     if language:
-        language = language.lower()
+        language = language.lower() # So the coding language can be recognised
     
     params = {"q": search_term, "language": language, "per_page": 100} if language else {"q": search_term, "per_page": 100}
 
