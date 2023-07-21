@@ -1,5 +1,5 @@
 # GitHunt
-GitHunt: A powerful GitHub Repository Search tool to discover relevant repositories based on your search terms and preferred language. Simplify your code exploration today!
+GitHunt: A powerful GitHub Repository Search tool to discover relevant repositories based on your search terms and preferred language. Simplifying your code exploration today!
 
 # GitHunt - GitHub Repository Search Tool
 
