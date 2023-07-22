@@ -12,7 +12,7 @@ else:
 
 init(autoreset=True)  # Initialize colorama to automatically reset color
 
-load_dotenv()  # Load environment variables from .env file
+load_dotenv()  # Load environment variables from .env file (just the github access token for now)
 
 def fetch_github_repositories(search_term, language=None, max_results=250):
     access_token = os.getenv("GITHUB_ACCESS_TOKEN")
