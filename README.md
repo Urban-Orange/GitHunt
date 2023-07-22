@@ -60,12 +60,12 @@ The `argparse_version.py` version of GitHunt uses the `argparse` library to prov
 
 1. Simplest Command Example:
 
-`python argparse_version.py --user bob` 
+ `python argparse_version.py --user bob` 
 
 2. Search with Language Filter:
 
-`python argparse_version.py --repo --language python --max_results 50`
+ `python argparse_version.py --repo --language python --max_results 50`
 
 3. Search for Both Repositories and Users:
 
-`python argparse_version.py --both --max_results 1000 openai`
+ `python argparse_version.py --both --max_results 1000 openai`
