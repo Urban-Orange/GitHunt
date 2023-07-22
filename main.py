@@ -72,7 +72,7 @@ def display_repositories(repositories):
 
         # Check if the repository is archived by the owner
         if repo.get('archived', False):
-            print(f"{Fore.RED}Repository is archived by the owner.")
+            print(f"{Fore.RED}Repository is archived by the owner [!]")
 
         print("=" * 60)
 
@@ -171,7 +171,7 @@ A Simple GitHub Search 🔎 Tool
 
             if repositories:
                 found_count = min(len(repositories), total_results)
-                print(f"{Fore.GREEN}Found {total_results} repositories, displaying the first {found_count} repositories:")
+                print(f"{Fore.LIGHTGREEN_EX}Found {total_results} repositories, displaying the first {found_count} repositories:")
                 print("")
                 display_repositories(repositories)
             else:
@@ -195,9 +195,9 @@ A Simple GitHub Search 🔎 Tool
             if users:
                 found_count = min(len(users), total_results)
                 if found_count == 1:
-                    print(f"{Fore.GREEN}Found {total_results} user with the search term {Fore.BLUE}{search_term}{Fore.GREEN}, displaying the first/only user:")
+                    print(f"{Fore.LIGHTGREEN_EX}Found {total_results} user with the search term {Fore.BLUE}{search_term}{Fore.LIGHTGREEN_EX}, displaying the first/only user:")
                 else:
-                    print(f"{Fore.GREEN}Found {total_results} users with the search term {Fore.BLUE}{search_term}{Fore.GREEN}, displaying the first {found_count} users:")
+                    print(f"{Fore.LIGHTGREEN_EX}Found {total_results} users with the search term {Fore.BLUE}{search_term}{Fore.LIGHTGREEN_EX}, displaying the first {found_count} users:")
                 print("")
                 display_github_users(users)
             else:
@@ -220,12 +220,12 @@ A Simple GitHub Search 🔎 Tool
             repositories, repo_total = fetch_github_repositories(search_term, language, max_results)
             users, user_total = fetch_github_users(search_term, max_results)
 
-            print(f"{Fore.GREEN}Found {repo_total} repositories and {user_total} users ")
+            print(f"{Fore.LIGHTGREEN_EX}Found {repo_total} repositories and {user_total} users ")
             print("")
 
             if repositories:
                 found_count = min(len(repositories), repo_total)
-                print(f"{Fore.GREEN}Displaying the first {found_count} repositories:")
+                print(f"{Fore.LIGHTGREEN_EX}Displaying the first {found_count} repositories:")
                 print("")
                 display_repositories(repositories)
             else:
@@ -233,11 +233,11 @@ A Simple GitHub Search 🔎 Tool
                 print("=" * 70)
 
             if users:
-                found_count = min(len(users), total_results)
+                found_count = min(len(users), max_results)
                 if found_count == 1:
-                    print(f"{Fore.GREEN}Found {total_results} user with the search term {Fore.BLUE}{search_term}{Fore.GREEN}, displaying the first/only user:")
+                    print(f"{Fore.LIGHTGREEN_EX}Found {total_results} user with the search term {Fore.BLUE}{search_term}{Fore.LIGHTGREEN_EX}, displaying the first/only user:")
                 else:
-                    print(f"{Fore.GREEN}Found {total_results} users with the search term {Fore.BLUE}{search_term}{Fore.GREEN}, displaying the first {found_count} users:")
+                    print(f"{Fore.LIGHTGREEN_EX}Found {total_results} users with the search term {Fore.BLUE}{search_term}{Fore.LIGHTGREEN_EX}, displaying the first {found_count} users:")
                 print("")
                 display_github_users(users)
             else:
