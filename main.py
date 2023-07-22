@@ -119,7 +119,9 @@ def display_github_users(users):
         print("=" * 60)
         print("")
 
-print(f"""{Fore.BLUE}
+while True:
+    
+    print(f"""{Fore.BLUE}
    _____ _ _     _    _             _   
   / ____(_) |   | |  | |           | |  
  | |  __ _| |_  | |__| |_   _ _ __ | |_ 
@@ -129,11 +131,32 @@ print(f"""{Fore.BLUE}
                                         
                                         
                                         
-A Simple GitHub Search 🔎 Tooll
+A Simple GitHub Search 🔎 Tool
 {Fore.RESET}""")
-
-while True:
+    
     search_term = input(f"{Fore.CYAN}Enter the search term: {Fore.RESET}")
+    
+    if not search_term:
+        print(f"{Fore.YELLOW}Search term cannot be empty. Please try again.")
+        time.sleep(3)
+        if sys.platform == "win32":
+            os.system('cls')
+        else:
+            os.system('clear')
+        print(f"""{Fore.BLUE}
+   _____ _ _     _    _             _   
+  / ____(_) |   | |  | |           | |  
+ | |  __ _| |_  | |__| |_   _ _ __ | |_ 
+ | | |_ | | __| |  __  | | | | '_ \| __|
+ | |__| | | |_  | |  | | |_| | | | | |_ 
+  \_____|_|\__| |_|  |_|\__,_|_| |_|\__|
+                                        
+                                        
+                                        
+A Simple GitHub Search 🔎 Tool
+{Fore.RESET}""")
+        continue
+        
 
     search_mode = input(f"{Fore.CYAN}Choose a search mode (1: Repositories, 2: Users, 3: Both): {Fore.RESET}")
 
@@ -171,7 +194,10 @@ while True:
 
             if users:
                 found_count = min(len(users), total_results)
-                print(f"{Fore.GREEN}Found {total_results} users, displaying the first {found_count} users:")
+                if found_count == 1:
+                    print(f"{Fore.GREEN}Found {total_results} user with the search term {Fore.BLUE}{search_term}{Fore.GREEN}, displaying the first/only user:")
+                else:
+                    print(f"{Fore.GREEN}Found {total_results} users with the search term {Fore.BLUE}{search_term}{Fore.GREEN}, displaying the first {found_count} users:")
                 print("")
                 display_github_users(users)
             else:
@@ -185,7 +211,7 @@ while True:
                 os.system('clear')
 
     elif search_mode == '3':
-        language = input(f"{Fore.CYAN}Enter the programming language (optional): {Fore.RESET}")
+        language = input(f"{Fore.CYAN}Enter the programming language [optional]: {Fore.RESET}")
         max_results_input = input(f"{Fore.CYAN}Enter the maximum number of repositories and users to show [Press ENTER for default 250]: {Fore.RESET}")
         print("")
 
@@ -207,13 +233,16 @@ while True:
                 print("=" * 70)
 
             if users:
-                found_count = min(len(users), user_total)
-                print(f"{Fore.GREEN}Displaying the first {found_count} users:")
+                found_count = min(len(users), total_results)
+                if found_count == 1:
+                    print(f"{Fore.GREEN}Found {total_results} user with the search term {Fore.BLUE}{search_term}{Fore.GREEN}, displaying the first/only user:")
+                else:
+                    print(f"{Fore.GREEN}Found {total_results} users with the search term {Fore.BLUE}{search_term}{Fore.GREEN}, displaying the first {found_count} users:")
                 print("")
                 display_github_users(users)
             else:
                 print(f"{Fore.YELLOW}No users found.")
-                print('')
+                print("")
 
         except ValueError:
             print(f"{Fore.RED}Invalid input for maximum results. Please enter a number.")
@@ -231,3 +260,17 @@ while True:
             os.system('cls')
         else:
             os.system('clear')
+
+    # Ask if the user wants to perform another search or exit the program
+    exit_choice = input(f"{Fore.CYAN}Search query finished. Press Enter to exit or ['R'] to Reset Program: {Fore.RESET}")
+    exit_choice = exit_choice.upper()
+    if exit_choice != 'R':
+        break
+    else:
+        if sys.platform == "win32":
+            os.system('cls')
+        else:
+            os.system('clear')
+            
+
+print(f"{Fore.YELLOW}Thank you for using GitHunt. Goodbye!{Fore.RESET}")
