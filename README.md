@@ -1,7 +1,7 @@
 # GitHunt
 GitHunt: A simple GitHub Repository Search tool to discover relevant repositories based on your search terms and preferred language. Simplifying your code exploration today!
 
-# GitHunt - GitHub Repository Search Tool
+# GitHunt - A Simple GitHub Search Tool  🔎
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
